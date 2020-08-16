@@ -4,7 +4,7 @@
 
 name:      InternetMonitor
 summary:   InternetMonitor is a set of scripts that monitors internet connectivity from an internal Linux host
-version:   1.0.2
+version:   1.0.3
 release:   1
 vendor:    iztech
 packager:  Izz Noland <izz@linux.com>
@@ -41,7 +41,7 @@ mkdir -p $RPM_BUILD_ROOT/home/izz/scripts/internetMonitor/logs
 
 install -D -m0644 crontab/InternetMonitor $RPM_BUILD_ROOT/etc/cron.d/InternetMonitor
 install -D -m0755 files/mon.sh $RPM_BUILD_ROOT/home/izz/scripts/internetMonitor/mon.sh
-install -D -m0644 file/logrotate/internetMonitor $RPM_BUILD_ROOT/etc/logrotate.d/internetMonitor
+install -D -m0644 files/logrotate/internetMonitor $RPM_BUILD_ROOT/etc/logrotate.d/internetMonitor
 
 
 %clean
