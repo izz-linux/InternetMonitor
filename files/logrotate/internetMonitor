@@ -1,0 +1,8 @@
+/home/izz/scripts/internetMonitor/logs/netMon.log {
+    su izz izz
+    rotate 14
+    daily
+    compress
+    delaycompress
+    create 644 izz izz
+}
