@@ -4,7 +4,7 @@
 
 name:      InternetMonitor
 summary:   InternetMonitor is a set of scripts that monitors internet connectivity from an internal Linux host
-version:   1.0.1
+version:   1.0.2
 release:   1
 vendor:    iztech
 packager:  Izz Noland <izz@linux.com>
