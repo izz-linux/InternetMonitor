@@ -4,7 +4,7 @@
 
 name:      InternetMonitor
 summary:   InternetMonitor is a set of scripts that monitors internet connectivity from an internal Linux host
-version:   1.0.5
+version:   1.0.6
 release:   1
 vendor:    iztech
 packager:  Izz Noland <izz@linux.com>
@@ -38,9 +38,10 @@ chmod -R u+w %{_builddir}/%{name}-%{version}
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 mkdir -p $RPM_BUILD_ROOT/opt/svc_intmon/internetMonitor
 mkdir -p $RPM_BUILD_ROOT/opt/svc_intmon/internetMonitor/logs
+mkdir -o $RPM_BUILD_ROOT/opt/svc_intmon/internetMonitor/bin
 
 install -D -m0644 crontab/InternetMonitor $RPM_BUILD_ROOT/etc/cron.d/InternetMonitor
-install -D -m0755 files/mon.sh $RPM_BUILD_ROOT/opt/svc_intmon/internetMonitor/mon.sh
+install -D -m0755 files/mon.sh $RPM_BUILD_ROOT/opt/svc_intmon/internetMonitor/bin/mon.sh
 install -D -m0644 config/logrotate/internetMonitor $RPM_BUILD_ROOT/etc/logrotate.d/internetMonitor
 
 
@@ -53,12 +54,12 @@ install -D -m0644 config/logrotate/internetMonitor $RPM_BUILD_ROOT/etc/logrotate
 %postun
 
 %files
-%defattr(0644,izz,izz)
+%defattr(0644,svc_intmon,svc_intmon)
 %config(noreplace) %attr(0644,root,root) /etc/cron.d/InternetMonitor
 %config(noreplace) %attr(0644,root,root) /etc/logrotate.d/internetMonitor
-%dir %attr(0755,izz,izz) /opt/svc_intmon/internetMonitor
-%dir %attr(0755,izz,izz) /opt/svc_intmon/internetMonitor/logs
-%attr(0755,izz,izz) /opt/svc_intmon/internetMonitor/mon.sh
+%dir %attr(0755,svc_intmon,svc_intmon) /opt/svc_intmon/internetMonitor
+%dir %attr(0755,svc_intmon,svc_intmon) /opt/svc_intmon/internetMonitor/logs
+%attr(0755,svc_intmon,svc_intmon) /opt/svc_intmon/internetMonitor/bin/mon.sh
 
 %changelog
 * Mon Aug 17 2020 Izz Noland <izz@linux.com> 1.0.4-1-InternetMonitor-Moved to Service Account.

@@ -1,8 +1,8 @@
-/home/izz/scripts/internetMonitor/logs/netMon.log {
-    su izz izz
+/opt/svc_intmon/internetMonitor/logs/netMon.log {
+    su svc_intmon svc_intmon
     rotate 14
     daily
     compress
     delaycompress
-    create 644 izz izz
+    create 644 svc_intmon svc_intmon
 }

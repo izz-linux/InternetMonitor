@@ -1,2 +1,2 @@
 MAILTO=""
-*/1 * * * * izz /home/izz/scripts/internetMonitor/mon.sh
+*/1 * * * * svc_intmon /opt/svc_intmon/internetMonitor/mon.sh
