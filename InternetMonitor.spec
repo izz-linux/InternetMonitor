@@ -4,8 +4,8 @@
 
 name:      InternetMonitor
 summary:   InternetMonitor is a set of scripts that monitors internet connectivity from an internal Linux host
-version:   1.0.3
-release:   3
+version:   1.0.4
+release:   1
 vendor:    iztech
 packager:  Izz Noland <izz@linux.com>
 license:   GPL
@@ -28,20 +28,20 @@ None.
 chmod -R u+w %{_builddir}/%{name}-%{version}
 
 %pre
-/usr/bin/getent group izz || /usr/sbin/groupadd -r izz
-/usr/bin/getent passwd izz || /usr/sbin/useradd -r -d /home/izz -s /bin/bash -g izz izz
+/usr/bin/getent group svc_intmon || /usr/sbin/groupadd -r svc_intmon
+/usr/bin/getent passwd svc_intmon || /usr/sbin/useradd -r -d /opt/svc_intmon -s /bin/bash -g svc_intmon svc_intmon
 
 
 %build
 
 %install
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
-mkdir -p $RPM_BUILD_ROOT/home/izz/scripts/internetMonitor
-mkdir -p $RPM_BUILD_ROOT/home/izz/scripts/internetMonitor/logs
+mkdir -p $RPM_BUILD_ROOT/opt/svc_intmon/internetMonitor
+mkdir -p $RPM_BUILD_ROOT/opt/svc_intmon/internetMonitor/logs
 
 install -D -m0644 crontab/InternetMonitor $RPM_BUILD_ROOT/etc/cron.d/InternetMonitor
-install -D -m0755 files/mon.sh $RPM_BUILD_ROOT/home/izz/scripts/internetMonitor/mon.sh
-install -D -m0644 files/logrotate/internetMonitor $RPM_BUILD_ROOT/etc/logrotate.d/internetMonitor
+install -D -m0755 files/mon.sh $RPM_BUILD_ROOT/opt/svc_intmon/internetMonitor/mon.sh
+install -D -m0644 config/logrotate/internetMonitor $RPM_BUILD_ROOT/etc/logrotate.d/internetMonitor
 
 
 %clean
@@ -56,12 +56,12 @@ install -D -m0644 files/logrotate/internetMonitor $RPM_BUILD_ROOT/etc/logrotate.
 %defattr(0644,izz,izz)
 %config(noreplace) %attr(0644,root,root) /etc/cron.d/InternetMonitor
 %config(noreplace) %attr(0644,root,root) /etc/logrotate.d/internetMonitor
-%dir %attr(0755,izz,izz) /home/izz/scripts/internetMonitor
-%dir %attr(0755,izz,izz) /home/izz/scripts/internetMonitor/logs
-%attr(0755,izz,izz) /home/izz/scripts/internetMonitor/mon.sh
+%dir %attr(0755,izz,izz) /opt/svc_intmon/internetMonitor
+%dir %attr(0755,izz,izz) /opt/svc_intmon/internetMonitor/logs
+%attr(0755,izz,izz) /opt/svc_intmon/internetMonitor/mon.sh
 
 %changelog
-* Sat Aug 15 2020 izz@linux.com
-- Initial build.
+* Mon Aug 17 2020 Izz Noland <izz@linux.com> 1.0.4-1-InternetMonitor-Moved to Service Account.
+* Sat Aug 15 2020 Izz Noland <izz@linux.com> 1.0.3-3-InternetMonitor-Initial build.
 
 
