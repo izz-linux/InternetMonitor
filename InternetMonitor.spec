@@ -59,7 +59,8 @@ systemctl reload crond.service
 %config(noreplace) %attr(0644,root,root) /etc/cron.d/InternetMonitor
 %config(noreplace) %attr(0644,root,root) /etc/logrotate.d/internetMonitor
 %dir %attr(0755,svc_intmon,svc_intmon) /opt/svc_intmon/internetMonitor
-%dir %attr(0644,svc_intmon,svc_intmon) /opt/svc_intmon/internetMonitor/logs
+%dir %attr(0755,svc_intmon,svc_intmon) /opt/svc_intmon/internetMonitor/logs
+%dir %attr(0755,svc_intmon,svc_intmon) /opt/svc_intmon/internetMonitor/bin
 %attr(0755,svc_intmon,svc_intmon) /opt/svc_intmon/internetMonitor/bin/mon.sh
 
 %changelog
