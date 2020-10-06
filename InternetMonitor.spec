@@ -4,8 +4,8 @@
 
 name:      InternetMonitor
 summary:   InternetMonitor is a set of scripts that monitors internet connectivity from an internal Linux host
-version:   1.0.6
-release:   2
+version:   1.0.8
+release:   1
 vendor:    iztech
 packager:  Izz Noland <izz@linux.com>
 license:   GPL
@@ -50,6 +50,7 @@ install -D -m0644 config/logrotate/internetMonitor $RPM_BUILD_ROOT/etc/logrotate
 
 
 %post
+systemctl reload crond.service
 
 %postun
 
@@ -58,11 +59,15 @@ install -D -m0644 config/logrotate/internetMonitor $RPM_BUILD_ROOT/etc/logrotate
 %config(noreplace) %attr(0644,root,root) /etc/cron.d/InternetMonitor
 %config(noreplace) %attr(0644,root,root) /etc/logrotate.d/internetMonitor
 %dir %attr(0755,svc_intmon,svc_intmon) /opt/svc_intmon/internetMonitor
-%dir %attr(0755,svc_intmon,svc_intmon) /opt/svc_intmon/internetMonitor/logs
+%dir %attr(0644,svc_intmon,svc_intmon) /opt/svc_intmon/internetMonitor/logs
 %attr(0755,svc_intmon,svc_intmon) /opt/svc_intmon/internetMonitor/bin/mon.sh
 
 %changelog
-* Mon Aug 17 2020 Izz Noland <izz@linux.com> 1.0.4-1-InternetMonitor-Moved to Service Account.
-* Sat Aug 15 2020 Izz Noland <izz@linux.com> 1.0.3-3-InternetMonitor-Initial build.
+* Tue Oct 6 2020 Izz Noland <izz@linux.com> 1.0.8-1
+- Updated paths for logrotate and checks
+* Mon Aug 17 2020 Izz Noland <izz@linux.com> 1.0.4-1
+- InternetMonitor-Moved to Service Account.
+* Sat Aug 15 2020 Izz Noland <izz@linux.com> 1.0.3-3
+- InternetMonitor-Initial build.
 
 
