@@ -17,6 +17,7 @@ prefix:    %(echo %{_prefix})
 requires:  bash
 requires(pre): /usr/sbin/useradd, /usr/bin/getent
 requires: crontabs
+requires: policycoreutils-python-utils
 source:    %{name}-%{version}.tar.gz
 
 %description
@@ -50,6 +51,8 @@ install -D -m0644 config/logrotate/internetMonitor $RPM_BUILD_ROOT/etc/logrotate
 
 
 %post
+semanage fcontext -a -t var_log_t "/opt/svc_intmon/internetMonitor/logs(/.*)?" 2>/dev/null || true
+restorecon -R /opt/svc_intmon/internetMonitor/logs
 systemctl reload crond.service
 
 %postun
