@@ -2,6 +2,8 @@
     su svc_intmon svc_intmon
     rotate 14
     daily
+    missingok
+    notifempty
     compress
     delaycompress
     create 644 svc_intmon svc_intmon
